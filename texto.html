@@ -1,0 +1,193 @@
+<html>
+
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <style>
+        body {
+            font-family: 'Abel';
+            font-size: 22px;
+        }
+    </style>
+    <script lang="javascript">(function () {
+            function replaceMatch(needle, value, haystack) {
+                var temp = haystack.toLowerCase();
+
+                while (x = temp.lastIndexOf(needle) > 0) {
+                    var found = temp.slice(x, x + needle.length);
+                    haystack.replace(found, value);
+                }
+            }
+
+            window.onload = function () {
+                var articoli = ["ll'", "l", "i", "lla", "lle", "llo", "gli"];
+                var prefixes = ["de", "a", "ne", "da", "su"];
+
+                var prep_articolate = [];
+
+                for (var i = 0; i < articoli.length; i++) {
+                    for (var j = 0; j < prefixes.length; j++) {
+                        prep_articolate.push(prefixes[j] + articoli[i]);
+                    }
+                }
+
+                var prep_semplice = ["a", "in", "da", "di", "per", "con", "su", "tra", "fra"];
+
+                var articles = document.getElementsByTagName("article");
+
+                for (var i = 0; i < articles.length; i++) {
+                    var article = articles[i];
+
+                    for (var k = 0; k < prep_articolate.length; k++) {
+                        var prep = prep_articolate[k];
+                        console.log(prep);
+                        var rgx = new RegExp('\\s' + prep + '\\s', "ig");
+                        article.innerHTML = article.innerHTML.replace(rgx, ' <input type="text" data-response="' + prep + '" class="question" onchange="checkResponse(this)" /> ');
+                    }
+
+                    for (var k = 0; k < prep_semplice.length; k++) {
+                        var prep = prep_semplice[k];
+                        console.log(prep);
+                        var rgx = new RegExp('\\s' + prep + '\\s', "ig");
+                        article.innerHTML = article.innerHTML.replace(rgx, ' <input type="text" data-response="' + prep + '" class="question" onchange="checkResponse(this)" /> ');
+                    }
+
+                    for (var k = 0; k < prefixes.length; k++) {
+                        var prep = prep_articolate[k];
+                        console.log(prep);
+                        var rgx = new RegExp('\\s' + prep, "ig");
+                        article.innerHTML = article.innerHTML.replace(rgx, ' <input type="text" data-response="' + prep + '" class="question" onchange="checkResponse(this)" /> ');
+                    }
+                }
+            }
+
+            window.checkResponse = function (el) {
+                if (el.value.length > 0) el.style.backgroundColor = (el.value.match(new RegExp(el.dataset['response'], "ig")) == null) ? 'red' : 'green';
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <article>
+        <h1>La giornata di Carlo </h1>
+        <p>Ciao,
+            mi chiamo Carlo e ho 18 anni. Oggi vorrei parlarvi della mia tipica giornata. Mi alzo sempre alle 7:00 e
+            faccio una buona colazione con tè e biscotti.</p>
+        <p>Dopo aver incontrato il mio amico Marco prendo alle 7:40 l'autobus che mi porta a scuola.</p>
+
+        <p>Mi piace molto la mia scuola perché ho molte materie che riguardano il mondo dell'informatica! Ogni giorno ho
+            6 ore di lezione,
+            tranne il sabato in cui ne ho 5.</p>
+        <p>Quando torno a casa studio e faccio i compiti,
+            ma mi diverto anche giocando al computer e suonando la mia chitarra. Ceno alle 19:00 con la mia famiglia,
+            composta da mia mamma,
+            mio papà e i miei tre fratelli. Alle 22:30 circa vado a letto a leggere alcuni libri prima di dormire. </p>
+    </article>
+    <article>
+        <h1>Mi chiamo Sofia</h1>
+        <p>Mi chiamo Sofia. Ho 35 anni. Mio marito si chiama Alessandro e ha 36 anni. La mia famiglia è composta in
+            tutto da cinque persone. Io e mio marito abbiamo tre figli.</p>
+        <p>Viviamo in un piccolo paese di campagna,
+            in una bella casa con un cortile. I nostri tre figli si chiamano Andrea,
+            Martina e Giacomo. Andrea frequenta l'asilo, Martina e Giacomo frequentano le scuole elementari. I miei tre
+            figli amano giocare a tanti giochi diversi nel cortile.</p>
+        <p>I genitori di mio marito vivono lontano da qui,
+            in città. I miei genitori invece abitano vicino a noi,
+            nello stesso paese. Vogliono molto bene ai nostri tre figli e spesso si occupano di loro.</p>
+        <p>Vicino a noi abita mia sorella Giulia con la sua famiglia. I miei figli giocano spesso con Marta,
+            la figlia di Giulia.</p>
+        <p>Io sono una casalinga che lavora inoltre a casa come articolista. Mio marito è invece un operaio. È una
+            persona molto buona e gioca spesso con i suoi tre figli. Sono molto felice della mia famiglia ! </p>
+    </article>
+    <article>
+        <h1>La mia famiglia</h1>
+        <p>Buongiorno ! Oggi vi presento la mia famiglia. Io sono il padre,
+            mi chiamo Gennaro Pirlo,
+            ho trentasette anni,
+            e lavoro come scrittore e giornalista da quando ne avevo venti.</p>
+        <p>Mia moglie si chiama Antonella Totti,
+            ha trentacinque anni ed è una splendida attrice di teatro.</p>
+        <p>La nostra famiglia è composta anche da altre due persone,
+            i nostri figli,
+            Manuela che ha diciassette anni,
+            e Marco che ha quindici anni,
+            e poi c'è anche Tremendo, il cane che vive con noi da nove anni, ed è parte
+            della famiglia. Viviamo tutti nella nostra splendida casa con un grande giardino.</p>
+        <p>Mio figlio fa il DJ e suona la batteria,
+            mia figlia invece adora dipingere ed è una pittrice. Frequentano entrambi il liceo Scientifico e hanno
+            ottimi voti a scuola.</p>
+    </article>
+    <article>
+        <h1>La mia casa II</h1>
+        <p>Io e la mia famiglia abitiamo in una grande casa poco distante dal centro ma immersa nel verde.</p>
+        <p>E' luminosa, spaziosa e, nelle vicinanze, c' è un bellissimo parco dove poter passeggiare. La mia casa è
+            composta da due piani e ha un grande giardino.</p>
+        <p>Al piano terra c'è l' ingresso,
+            la cucina,
+            la sala da pranzo e un bagno. Al primo piano,
+            invece,
+            ci sono tre camere da letto e due bagni.</p>
+        <p>In una camera da letto ci sono i miei genitori,
+            la loro stanza è la più grande di tutta la casa ! Io condivido la stanza con mia sorella mentre,
+            mio fratello maggiore,
+            ha una stanza più grande tutta per sé !</p>
+        <p>La mia stanza è davvero bellissima ! Ha un grande balcone che affaccia sul giardino e,
+            se si guarda bene all'orizzonte durante le giornate più serene, è possibile anche vedere il mare! Adoro la
+            mia casa!</p>
+    </article>
+    <article>
+        <h1>Come stai?</h1>
+        <p>Leggi il dialogo e rispondi correttamente alle domande. Luca e Giovanni sono due amici che s'incontrano in
+            strada per caso:</p>
+        <p>Luca: Ciao Giovanni<br>Giovanni: Ciao Luca,
+            come stai?<br>Luca: Bene grazie,
+            anche se ho un po' di mal di schiena. E tu come stai?<br>
+            Giovanni: Bene. Ah mi dispiace per il tuo mal di schiena. Stai prendendo delle medicine?<br>Luca: Sì,
+            ma non ne ho tanta voglia,
+            non mi piacciono le medicine.<br>Giovanni: Però le medicine fanno bene alla salute,
+            non importa se ti piacciono o no. Hanno un cattivo sapore?<br>Luca: Sì hanno un cattivo sapore,
+            ma soprattutto non mi piacciono perché assumere troppe medicine fa male alla salute. Tu che cosa ne
+            pensi?<br>Giovanni: io penso che se una persona sta male deve prendere le medicine,
+            però deve anche fare attenzione a non abusare perché altrimenti possono fare male.<br>Luca: Parli come se
+            non avessi mai preso le medicine. Quando è stata l'ultima volta che hai preso le
+            medicine?<br>Giovanni: Tre anni fa.<br>Luca: ah ah ah. Ecco perché parli così !<br>Giovanni: Pensa a stare
+            bene e a prendere le medicine.<br>Luca: va bene Giovanni,
+            seguirò il tuo consiglio<br>Giovanni: ciao Luca,
+            ci vediamo presto.<br>Luca: a presto. </p>
+    </article>
+    <article>
+        <h1>La mia famiglia 3</h1>
+        <p>Mi chiamo Alice ho 16 anni e vivo a Roma con la mia famiglia. Mio padre si chiama Andrea ha 55 anni e lavora
+            in banca. È alto e magro,
+            ha i capelli castani e gli occhi verdi,
+            ama molto lo sport e ogni sabato va a giocare a tennis.</p>
+        <p>Mia madre si chiama Franca e insegna matematica in un liceo della mia città. Ha un bel sorriso,
+            è snella e bruna con i capelli lisci e lunghi,
+            ma non dico quanti anni ha perché non si chiede mai l’età a una signora.</p>
+        <p>Mia sorella Sara ha tre anni più di me. Frequenta il primo anno di università e studia ingegneria. Ha i
+            capelli e gli occhi castani come me. È simpatica,
+            ha molti amici e ama fare shopping. Il vero re della casa però è Macchia,
+            il nostro piccolo e insostituibile cane. </p>
+    </article>
+    <article>
+        <h1>Cosa mi metto?</h1>
+        <p>Marta: Ciao Silvia,
+            da quanto tempo non ci vediamo ! Come stai? <br>Silvia: Bene grazie. Che piacere vederti ! Sono appena
+            tornata da Londra. Sono stata lì tre mesi per studiare inglese. <br>Marta: E come è andata? <br>Silvia: È
+            stata un’esperienza molto interessante. Ho migliorato il mio inglese e ho conosciuto tante persone. A
+            proposito ti presento Beth. Ci siamo conosciute in Inghilterra. Beth è qui per studiare l’italiano.
+            <br>Marta: Piacere di conoscerti Beth. Benvenuta in Italia. <br>Silvia: Domani sera pensiamo di andare al
+            cinema. Vuoi venire anche tu? <br>Marta: Mi piacerebbe,
+            ma domani sera c’è la festa di compleanno di Marco. Perché non venite anche voi? <br>Silvia: non so,
+            non siamo state invitate. <br>Marta: Sicuramente a Marco farà piacere rivederti e conoscere la tua amica.
+            <br>Silvia: Come devo vestirmi? Non so cosa mettermi. È una festa elegante? <br>Marta: No ! È una festa tra
+            amici ! Io metterò una gonna corta nera con un pullover rosso e gli stivali alti. Se fa freddo metterò il
+            piumino,
+            altrimenti la giacca grigia con la sciarpa. <br>Silvia: Che dici se metto il vestito verde che abbiamo
+            comprato insieme e le scarpe con il tacco? <br>Beth: Io non ho portato molti vestiti. Può andare bene un
+            pantalone nero e la camicia bianca? Ho anche una collana e gli orecchini. <br>Marta: Sarete bellissime !
+            Allora a domani.</p>
+    </article>
+</body>
+
+</html>
